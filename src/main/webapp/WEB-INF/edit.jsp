@@ -111,9 +111,12 @@
 											 	<span class="input-group-addon"></span>
 											    <form:select path="prep">
 											    <form:option value=""></form:option>
-											    <form:option value="seconds">second()s)</form:option>
-											    <form:option value="minute">minute(s)</form:option>
-											    <form:option value="hours">hour(s)</form:option>
+											    <form:option value="second">second</form:option>
+											    <form:option value="seconds">seconds</form:option>
+											    <form:option value="minute">minute</form:option>
+											    <form:option value="minutes">minutes</form:option>
+											    <form:option value="hour">hour</form:option>
+											    <form:option value="hours">hours</form:option>
 											    </form:select>
 											    <form:errors path="prep"/>
 	                                    </div>
@@ -122,10 +125,10 @@
 	                            <div class="form-group">
 	                                <h6>Recipe <span class="icon-danger">*</span></h6>
 	                                <form:label path="formula">
-								    	<form:textarea path="formula"  class="form-control textarea-limited" placeholder="This is a textarea limited to 250 characters." rows="8" cols="60"  maxlength="250" />
+								    	<form:textarea path="formula"  class="form-control textarea-limited" placeholder="This is a textarea limited to 1500 characters." rows="8" cols="60"  maxlength="1500" />
 								    	<form:errors path="formula"/>
 							    	</form:label>
-	                                <h5><small><span id="textarea-limited-message" class="pull-right">250 characters left</span></small></h5>
+	                                <h5><small><span id="textarea-limited-message" class="pull-right">1500 characters left</span></small></h5>
 	                            </div>
 	                        </div>
 	                    </div>

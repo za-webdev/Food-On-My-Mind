@@ -80,51 +80,58 @@
 	                                <h6>Name <span class="icon-danger">*</span></h6>
 	                                <form:label path="title">
 								    	<form:input path="title" class="form-control border-input" placeholder="recipe name here..."/>
-								    	<form:errors path="title"/>
+								    	<form:errors path="title" class="errors"/>
 							    	</form:label>
 	                            </div>
 	                            <div class="form-group">
 	                            <h6>Description<span class="icon-danger">*</span></h6>
 	                            <form:label path="description" >
 								    <form:textarea path="description" class="form-control border-input" rows="6" cols="40" placeholder="what's special about this recipe..."/>
-								    <form:errors path="description"/>
+								    <form:errors path="description" class="errors"/>
 							    </form:label>
 							   </div>
+							   <form:label path="ingredients" >
+								    <form:input path="ingredients" type="hidden" value="" />
+							   </form:label>
 	                            <div class="form-group">
 	                                <h6>Ingredients<span class="icon-danger">*</span></h6>
 	                                <small>Name of each ingredient must be separated by ( , )</small>
 	                                <input type="text" name="ing" class="form-control border-input" placeholder="e.g (1 cup milk,2 tbsp sugar)">
-	                      			<p>${error}</p>
+	                      			<p class="errors">${badError}</p>
 	                            </div>
 	                            <div class="row price-row">
 	                                <div class="col-md-6">
 	                                    <h6>Preparation Time<span class="icon-danger">*</span></h6>
 	                                    <div class="input-group border-input">
 		                                    
-											    <form:input path="prep" class="form-control border-input"/>
+											    <form:input path="prep" type="number" class="form-control border-input"/>
 											 	<span class="input-group-addon"></span>
 											    <form:select path="prep">
 											    <form:option value=""></form:option>
-											    <form:option value="seconds">second()s)</form:option>
-											    <form:option value="minute">minute(s)</form:option>
-											    <form:option value="hours">hour(s)</form:option>
+											    <form:option value="second">second</form:option>
+											    <form:option value="seconds">seconds</form:option>
+											    <form:option value="minute">minute</form:option>
+											    <form:option value="minutes">minutes</form:option>
+											    <form:option value="hour">hour</form:option>
+											    <form:option value="hours">hours</form:option>
 											    </form:select>
-											    <form:errors path="prep"/>
 	                                    </div>
+	                                     <form:errors path="prep" class="errors"/>
 	                                </div>
 	                            </div>
 	                            <div class="form-group">
 	                                <h6>Recipe <span class="icon-danger">*</span></h6>
 	                                <form:label path="formula">
-								    	<form:textarea path="formula"  class="form-control textarea-limited" placeholder="This is a textarea limited to 500 characters." rows="10" cols="80"  maxlength="500" />
-								    	<form:errors path="formula"/>
+								    	<form:textarea path="formula"  class="form-control textarea-limited" placeholder="This is a textarea limited to 1500 characters." rows="10" cols="80"  maxlength="1500" />
+								    	<form:errors path="formula" class="errors"/>
 							    	</form:label>
-	                                <h5><small><span id="textarea-limited-message" class="pull-right">500 characters left</span></small></h5>
+	                                <h5><small><span id="textarea-limited-message" class="pull-right">1500 characters left</span></small></h5>
 	                            </div>
 	                        </div>
 	                    </div>
 	
 						<input type="hidden"  path="uploader" name="uploader" value="${currentUser.id}"/> 
+						
 	                    <div class="row buttons-row">
 	                        <div class="col-md-4 col-sm-4">
 	                          <a href="/home" class="btn btn-outline-danger btn-block btn-round">Cancel</a>

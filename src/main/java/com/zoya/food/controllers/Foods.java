@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import com.zoya.food.models.Ingredient;
 import com.zoya.food.models.Recipe;
 import com.zoya.food.models.Review;
@@ -53,20 +54,23 @@ public class Foods {
 	
 	@PostMapping("/createRecipe")
 	public String createRecipe(Model model,@Valid @ModelAttribute("my_recipe") Recipe recipe, BindingResult result,@RequestParam("ing") String ing,@RequestParam("file") MultipartFile file,RedirectAttributes flash) {
+		
+		if(ing.length()<1) {
+			model.addAttribute("badError", "Ingredient name must be 2 characters or longer");
+			System.out.println("ing is null");
+			
+		}
+		
 		if (result.hasErrors()) {
-			if(recipe.getIngredients() == null) {
-				flash.addFlashAttribute("error", "cannot be null");
-//				System.out.println("its null");
-			}
+			
 			return "newRecipe";
 		}
-//	userValidator.Recipevalidate(recipe, result);
-//        if (result.hasErrors()) {
-//            return "newRecipe";
-//       }
 		
-
-		
+		if(ing.length()<1) {
+			model.addAttribute("badError", "Ingredient name must be 2 characters or longer");
+			System.out.println("ing is null");
+			return "newRecipe";
+		}
 		
 		if (file!= null) {
 			
@@ -161,13 +165,22 @@ public class Foods {
 //		return String.format("redirect:/show/recipe/"+ id+ "/#review_form");
 	}
 	
-	
+		
 	@RequestMapping("/addToFav")
-	public String joinEvent(Principal principal,@RequestParam Long user_id,@RequestParam Long recipe_id) {
+	public String joinEvent(Principal principal,@RequestParam Long user_id,@RequestParam Long recipe_id,RedirectAttributes flash) {
 		
 		User user = userService.findById(user_id);
 		Recipe recipe = recipeService.findById(recipe_id);
 		List<Recipe> favRecipes = user.getFavRecipes();
+		
+		for(Recipe fav:favRecipes) {
+			if (fav.getId().equals(recipe.getId())) {
+				flash.addFlashAttribute("faverror","You have already favourited this recipe");
+				return String.format("redirect:/show/recipe/"+ recipe_id);
+				
+			}
+		}
+		
 		favRecipes.add(recipe);
 		user.setFavRecipes(favRecipes);
 		userService.update(user);
@@ -182,30 +195,9 @@ public class Foods {
 	        String username = principal.getName();
 	        model.addAttribute("currentUser", userService.findByUsername(username));
     	}
-    	
         return "profile";
     }
-	
-//	@RequestMapping("/profile/img")
-//	public String profileImage(Principal principal,User user,@RequestParam("file") MultipartFile file) {
-//		if (file!= null) {
-//			
-//			try {
-//				byte[] bytes =file.getBytes();
-//				
-//				String encodedFile = Base64.getEncoder().encodeToString(bytes);
-//				user.setImg(encodedFile);
-//				
-//			}
-//			
-//			catch(Exception e ) {
-//				System.out.println("problem");
-//			}
-//			
-//		}
-//		return "redirect:/profile";
-//	}
-	
+		
 	@RequestMapping("/edit/{id}")
 	public String edit(Principal principal,Model model, @PathVariable("id") Long id) {
 		String username = principal.getName();
@@ -219,7 +211,6 @@ public class Foods {
 			ingredients+=ing.getIngredient()+",";
 		}
 		model.addAttribute("ings",ingredients);
-//		System.out.println(ings);
 		return "edit";
 	}
 	
@@ -323,11 +314,24 @@ public class Foods {
 	}
 	
 	@RequestMapping("/delete/{id}")
-    public String destroy(@PathVariable("id") Long id) {
+	public String destroy(@PathVariable("id") Long id) {
+		recipeService.delete(id);
+      return "redirect:/profile";
 		
-        recipeService.delete(id);
-        return "redirect:/profile";
+	}
+	
+	@RequestMapping("/delete/user/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+		
+        userService.delete(id);
+        return "redirect:/admin/forUsers";
     }
+	
+	@RequestMapping("/edit/userProfile/{id}")
+	public String userProfole(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("allUsers", userService.all());
+		return "edit-Userprofile";
+	}
 	
 	
 }

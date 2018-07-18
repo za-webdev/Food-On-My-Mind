@@ -433,7 +433,7 @@ header #campfire #logs div:nth-of-type(2) {
   position: relative;
   float: left;
   width: 46%;
-  height: 250px;
+  height: auto;
   padding: 10px 10px 60px 10px;
   margin: 2%;
   background: rgba(255, 255, 255, 0.2);
@@ -1186,4 +1186,6 @@ input, textarea, select, label {
 }
 .errors{
 	color:#78909c;
+	
 }
+

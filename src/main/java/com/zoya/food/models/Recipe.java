@@ -21,6 +21,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
 
 @Entity
 @Table(name="recipes")
@@ -36,12 +40,12 @@ public class Recipe {
 	@Size(min=5,message="Description must be 5 characters or longer")
 	private String description;
 	
-	@NotNull
+	@Column(length = 1500)
 	@Size(min=15,message="Recipe should be atleast 15 characters long")
 	private String formula;
 	
-	@NotNull
-	@Size(min=1,message="This field cannot be empty")
+	
+	@Size(min=2,message="This field cannot be empty")
 	private String prep;
 	
 	private Double avgRating;
@@ -60,7 +64,7 @@ public class Recipe {
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     private List<Review> reviews;
 	
-	@ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
     @JoinTable(
         name = "user_fav_recipes", 
         joinColumns = @JoinColumn(name = "recipe_id"), 

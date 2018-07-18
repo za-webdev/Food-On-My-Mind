@@ -155,3 +155,13 @@
   width: 100%;
   border-bottom: 1px dashed #D64901;
 }
+.allRecipes{
+	margin-right:30px;
+}
+
+.media-content{
+	white-space: nowrap; 
+    width: 250px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

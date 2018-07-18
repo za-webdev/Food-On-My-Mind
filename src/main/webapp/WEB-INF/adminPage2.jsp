@@ -31,10 +31,10 @@ tr:nth-child(even) {
     <th>Recipe</th>
     <th>Actions</th>
   </tr>
-  <c:forEach items="${allRecipes}" var="recipe">
+  <c:forEach items="${allUsers}" var="user">
 	<tr>
-	<td><a href="/show/recipe/${recipe.id}">${recipe.title}</a></td>
-	<td><a href="/edit/${recipe.id}">Edit</a>| <a href="/delete/${recipe.id}">Delete</a></td>
+	<td>${user.alias}</td>
+	<td><a href="/edit/userProfile/${user.id}">Edit</a>| <a href="/delete/user/${user.id}">Delete</a></td>
 		
 	</tr>
 	</c:forEach>

@@ -6,7 +6,7 @@
 	<groupId>com.zoya</groupId>
 	<artifactId>food</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>food</name>
 	<description>Food on my mind</description>

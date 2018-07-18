@@ -43,16 +43,6 @@ public class Users {
 			model.addAttribute("searchRecipes",recipeService.findByTitle(q));
 			List<Recipe> allRecipes=recipeService.all();
 			model.addAttribute("allRecipes",allRecipes);
-			
-//			List<Recipe> recipes = recipeService.all();
-//	    	System.out.println(q);
-//			for(Recipe recipe: recipes) {
-//				if(!q.equals(recipe.getTitle())) {
-//					flash.addFlashAttribute("errora","cannot find");
-//					
-//				}
-//			}
-
 		}
     	
     	else {
@@ -114,12 +104,26 @@ public class Users {
         return "redirect:/home";
     }
     
-    @RequestMapping("/admin")
-    public String adminPage(Principal principal, Model model) {
+    @RequestMapping("/admin/forRecipes")
+    public String adminPage1(Principal principal, Model model) {
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
         
+        List<Recipe> allRecipes=recipeService.all();
+        model.addAttribute("allRecipes",allRecipes);
+        
         return "adminPage";
+    }
+    
+    @RequestMapping("/admin/forUsers")
+    public String adminPage2(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("currentUser", userService.findByUsername(username));
+        
+        List<User> allUsers=userService.all();
+        model.addAttribute("allUsers",allUsers);
+        
+        return "adminPage2";
     }
     
    

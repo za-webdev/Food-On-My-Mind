@@ -5,16 +5,6 @@
 <html style="backround-color=#ffebee">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--<link rel="stylesheet" type="text/css" href="/css/style.css">
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<title>Insert title here</title>-->
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
     
@@ -100,10 +90,6 @@
 		  		</c:forEach>
 		  		</div>
 	    </div>
-	    <c:if test="${searchRecipes.size()<0}">
-	    	<p>cannot find</p>
-	    </c:if>
-	  
 	    <div class="col-md">
 	        <div class="article_box">
 			<c:forEach items="${searchRecipes}" var="recipe">
@@ -123,7 +109,7 @@
 				      <p>
 				        <a href="/show/recipe/${recipe.id}"><strong>${recipe.title}</strong></a> <small>By: ${recipe.uploader.alias}</small>
 				        <br>
-				        <strong>Description:</strong>${recipe.description}			        
+				        <strong >Description:</strong>${recipe.description}			        
 				        <br>
 				        <span class="icon is-small is-left">
 	      					<i class="far fa-clock"></i>
@@ -139,6 +125,7 @@
 		</div>
 	</div>
 	<c:if test="${searchRecipes == null}">
+	<div class="allRecipes">
 	    <div class="col-md">
 	    <h1 id="top_5">Top 5 Recipes</h1>
 	       <div class="article_box">
@@ -175,6 +162,7 @@
 		</div>
 		
 	    </div>
+	    </div>
 	    </c:if>
 	    <div class="add-box">
 		    <div class="col" id="fork_box">
@@ -192,7 +180,6 @@
      	</div>
      </div> 
      <footer class="footer footer-gray">
-		<!--Welcome <c:out value="${currentUser.alias}"></c:out>-->
 		<div class="container">
     		<div class="row">
     			<div class="credits ml-auto">

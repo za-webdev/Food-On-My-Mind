@@ -934,7 +934,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 .form-control {
   background-color: #FFFFFF;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #66615b57;
   border-radius: 4px;
   color: #66615b;
   font-size: 14px;
@@ -11031,3 +11031,22 @@ body {
     height: 250px;
     margin-bottom: 10px;
 }
+
+.errors{
+	color:red;
+}
+
+::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color:#66615b57;
+	opacity:1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #66615b57;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #66615b57;
+}
+
+

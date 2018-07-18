@@ -57,17 +57,18 @@
 	        <div class="section">
 	            <div class="container">
 	                <h2 id="recipe_heading">Your Profile</h2>
-	                <form:form method="POST" action="/update/profile/${CurrentUser.id}" modelAttribute="CurrentUser" enctype="multipart/form-data">
+	                <c:forEach items="${allUsers}" var="User">
+	                <form:form method="POST" action="/update/profile/${User.id}" modelAttribute="allUsers" enctype="multipart/form-data">
 	                    <div class="row">
 	                        <div class="col-md-5 col-sm-5">
 	                            <h6>Profile Image</h6>
 	                             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 	                              <div class="fileinput-new thumbnail img-no-padding" id="user-img" style="max-width: 370px; max-height: 250px;">
-	                                <c:if test="${CurrentUser.img == null}">
+	                                <c:if test="${User.img == null}">
 	                                	<img src="/images/default-user.png" >
 	                                </c:if>
-	                              	<c:if test="${CurrentUser.img != null}" >
-	                                	<img src="data:image/png;base64,${CurrentUser.img}">
+	                              	<c:if test="${User.img != null}" >
+	                                	<img src="data:image/png;base64,${User.img}">
 	                                </c:if>
 	                              </div>
 	                              <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;"></div>
@@ -81,9 +82,9 @@
 	                        <div class="col-md-7 col-sm-7">
 	                            <div class="form-group">
 	                                <h6>Name <span class="icon-danger">*</span></h6>
-	                                <form:label path="alias">
-								    	<form:input path="alias" class="form-control border-input"/>
-								    	<form:errors path="alias"/>
+	                                <form:label path="${ User.alias}">
+								    	<form:input path="${ User.alias}" class="form-control border-input"/>
+								    	<form:errors path="${ User.alias}"/>
 							    	</form:label>
 	                            </div>
 	                            
@@ -98,7 +99,7 @@
 	                        </div>
 	                    </div>
 						
-						<input type="hidden"  path="user" name="user" value="${currentUser.id}"/>
+						<input type="hidden"  path="user" name="user" value="${User.id}"/>
 	                    <div class="row buttons-row">
 	                        <div class="col-md-4 col-sm-4">
 	                          <a href="/profile" class="btn btn-outline-danger btn-block btn-round">Cancel</a>
@@ -108,6 +109,7 @@
 	                        </div>
 	                    </div>
 	                </form:form>
+	                </c:forEach>
 	            </div>
 	        </div>
 	    </div>

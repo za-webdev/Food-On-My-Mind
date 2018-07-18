@@ -104,6 +104,7 @@
 			<input type="hidden" name="recipe_id" value="${Recipe.id}">
 			<input class="ready" type="submit" value="Add to Favorites">
 		</form>
+		<p class="errors">${faverror}</p>
     </div>
     </div> <!-- ingredients -->
   </div><!-- recipe-text -->

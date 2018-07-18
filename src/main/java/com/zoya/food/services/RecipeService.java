@@ -41,4 +41,8 @@ public class RecipeService {
 	public ArrayList<Recipe> topfive(){
 		return (ArrayList<Recipe>) recipeRepo.OrderByRating();
 	}
+	
+//	public void destroy(Recipe recipe) {
+//        recipeRepo.delete(recipe);
+//    }
 }
